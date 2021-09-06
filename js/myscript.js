@@ -19,15 +19,28 @@ function numeriRandom(){
 //funzione inserisci i tuoi numeri
 function inserisciNumeri(){
     numeriIndovinati = [];
-    for(let i = 0; i < numeroMassimo; i++){
+    // for(let i = 0; i < numeroMassimo; i++){
+    //     let tuoNumero = parseInt( prompt(i+1 + "/" + numeroMassimo + " Inserisci il tuo numero da 1 a 100") );
+    //     if( (Number.isNaN(tuoNumero)) || (tuoNumero < 1 ) || (tuoNumero > 100 ) ){
+    //         alert("Devi inserire un numero tra 1 e 100");
+    //         i--;
+    //     } else if( numeriIndovinati.includes(tuoNumero) ){
+    //         alert("Devi inserire un numero diverso il numero " + tuoNumero + " è stato già inserito");
+    //         i--;
+    //     } else if( numeriCasuali.includes(tuoNumero) ){
+    //         numeriIndovinati.push(tuoNumero);
+    //         if(numeriIndovinati.length == numeroMassimo){
+    //             alert("HAI INDOVINATO TUTTI I NUMERI");
+    //         }
+    //     }
+    // }
+    while( numeriTotali.length < numeroMassimo ){
         let tuoNumero = parseInt( prompt(i+1 + "/" + numeroMassimo + " Inserisci il tuo numero da 1 a 100") );
-        if( (Number.isNaN(tuoNumero)) || (tuoNumero < 1 ) || (tuoNumero > 100 ) ){
-            alert("Devi inserire un numero tra 1 e 100");
-            i--;
-        } else if( numeriIndovinati.includes(tuoNumero) ){
+        numeriTotali.push(tuoNumero);
+        i++;
+        if(numeriIndovinati.includes(tuoNumero)){
             alert("Devi inserire un numero diverso il numero " + tuoNumero + " è stato già inserito");
-            i--;
-        } else if( (!numeriIndovinati.includes(tuoNumero)) && ( numeriCasuali.includes(tuoNumero)) ){
+        } else if( numeriCasuali.includes(tuoNumero)){
             numeriIndovinati.push(tuoNumero);
             if(numeriIndovinati.length == numeroMassimo){
                 alert("HAI INDOVINATO TUTTI I NUMERI");
@@ -42,21 +55,22 @@ function inserisciNumeri(){
 
 let numeriCasuali = [];
 let numeriIndovinati = [];
+let numeriTotali = [];
 let numeroMassimo = 5;
 let tempoDifficolta = 10000;
-
+let i = 0;
 
 numeriRandom();
-//PARTE GRAFICA
-// var timeleft = (tempoDifficolta/1000) - 1;
-// var downloadTimer = setInterval(function(){
-//   if(timeleft <= 0){
-//     clearInterval(downloadTimer);
-//     document.getElementById("countdown").innerHTML = "Tempo esaurito";
-//   } else {
-//     document.getElementById("countdown").innerHTML = timeleft + " tempo rimasto";
-//   }
-//   timeleft -= 1;
-// }, 950);
+
+var timeleft = (tempoDifficolta/1000) - 1;
+var downloadTimer = setInterval(function(){
+  if(timeleft <= 0){
+    clearInterval(downloadTimer);
+    document.getElementById("countdown").innerHTML = "Tempo esaurito";
+  } else {
+    document.getElementById("countdown").innerHTML = timeleft + " tempo rimasto";
+  }
+  timeleft -= 1;
+}, 950);
 
 setTimeout(inserisciNumeri, tempoDifficolta);
